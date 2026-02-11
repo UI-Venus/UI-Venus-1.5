@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Primary Meta Tags -->
+  <meta name="title"
+    content="UI-Venus-1.5 Technical Report - Venus Team, Ant Group">
+  <meta name="description"
+    content="UI-Venus-1.5 is a unified, end-to-end GUI agent that leverages large-scale mid-training, online reinforcement learning, and model merging to deliver state-of-the-art automation across web and mobile platforms. It significantly outperforms previous baselines on major benchmarks while demonstrating robust capabilities in navigating complex real-world applications.">
+  <meta name="keywords"
+    content="GUI Grounding, GUI Agents, Benchmark Evaluation, Multimodal Large Language Models, User Interface Understanding, Visual Grounding, Vision-Language Models">
+  <meta name="author"
+    content="Venus Team">
+  <meta name="robots" content="index, follow">
+  <meta name="language" content="English">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="AntGroup inclusionAI">
+  <meta property="og:title"
+    content="UI-Venus-1.5 Technical Report">
+  <meta property="og:description"
+    content="UI-Venus-1.5 is a unified, end-to-end GUI agent that leverages large-scale mid-training, online reinforcement learning, and model merging to deliver state-of-the-art automation across web and mobile platforms. It significantly outperforms previous baselines on major benchmarks while demonstrating robust capabilities in navigating complex real-world applications.">
+  <meta property="og:url" content="https://ui-venus.github.io/UI-Venus-1.5/">
+  <meta property="og:image" content="https://ui-venus.github.io/UI-Venus-1.5/static/images/uivenus-result_4.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt"
+    content="UI-Venus-1.5 Technical Report">
+  
+  <meta property="article:published_time" content="2026-02-09T18:43:40Z">
+  <meta property="article:author" content="Venus Team">
+  <meta property="article:section" content="Research">
+  <meta property="article:tag" content="GUI Agent">
+  <meta property="article:tag" content="UI-Venus">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@inclusionAI">
+  <!-- <meta name="twitter:creator" content="@AUTHOR_TWITTER_HANDLE"> -->
+  <meta name="twitter:title"
+    content="UI-Venus-1.5 Technical Report">
+  <meta name="twitter:description"
+    content="UI-Venus-1.5 is a unified, end-to-end GUI agent that leverages large-scale mid-training, online reinforcement learning, and model merging to deliver state-of-the-art automation across web and mobile platforms. It significantly outperforms previous baselines on major benchmarks while demonstrating robust capabilities in navigating complex real-world applications.">
+  <meta name="twitter:image" content="https://ui-venus.github.io/UI-Venus-1.5/static/images/uivenus-result_4.png">
+  <meta name="twitter:image:alt"
+    content="UI-Venus-1.5 Technical Report">
+
+  <!-- Academic/Research Specific -->
+  <meta name="citation_title"
+    content="UI-Venus-1.5 Technical Report">
+
+  <meta name="citation_author" content="Venus Team">
+
+  <meta name="citation_publication_date" content="2026">
+  <meta name="citation_conference_title" content="arXiv">
+  <meta name="citation_pdf_url" content="https://arxiv.org/pdf/2602.09082">
+
+  <!-- Additional SEO -->
+  <meta name="theme-color" content="#2563eb">
+  <meta name="msapplication-TileColor" content="#2563eb">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+  <!-- Preconnect for performance -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://ajax.googleapis.com">
+  <link rel="preconnect" href="https://documentcloud.adobe.com">
+  <link rel="preconnect" href="https://cdn.jsdelivr.net">
+
+  <title>UI-Venus-1.5: Towards Robust Real-World Applications - Venus Team</title>
+
+  <!-- Favicon and App Icons -->
+  <link rel="icon" type="image/x-icon" href="static/images/ui-venus-logo.ico">
+  <link rel="apple-touch-icon" href="static/images/ui-venus-logo.ico">
+
+  <!-- Critical CSS - Load synchronously -->
+  <link rel="stylesheet" href="static/css/bulma.min.css">
+  <link rel="stylesheet" href="static/css/index.css">
+
+  <!-- Non-critical CSS - Load asynchronously -->
+  <link rel="preload" href="static/css/bulma-carousel.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/bulma-slider.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="static/css/fontawesome.all.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+  <link rel="preload" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
+
+  <!-- Fallback for browsers that don't support preload -->
+  <noscript>
+    <link rel="stylesheet" href="static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  </noscript>
+
+  <!-- Fonts - Optimized loading -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Defer non-critical JavaScript -->
+  <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script defer src="https://documentcloud.adobe.com/view-sdk/main.js"></script>
+  <script defer src="static/js/fontawesome.all.min.js"></script>
+  <script defer src="static/js/bulma-carousel.min.js"></script>
+  <script defer src="static/js/bulma-slider.min.js"></script>
+  <script defer src="static/js/index.js"></script>
+
+  <!-- Structured Data for Academic Papers -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": "UI-Venus-1.5: Towards Robust Real-World Applications",
+    "description": "UI-Venus-1.5 is a unified, end-to-end GUI agent family that establishes new state-of-the-art performance across diverse grounding and navigation benchmarks. This achievement is driven by a novel training pipeline that integrates large-scale mid-training on 10B tokens, scaled online reinforcement learning for complex decision-making, and model merging to synthesize domain-specific capabilities.",
+    "author": [
+      {
+        "@type": "Person",
+        "name": "Venus Team",
+        "affiliation": {
+          "@type": "Organization",
+          "name": "Ant Group"
+        }
+      }
+    ],
+    "datePublished": "2026-02-09",
+    "publisher": {
+      "@type": "Organization",
+      "name": "arXiv"
+    },
+    "url": "https://ui-venus.github.io/UI-Venus-1.5/",
+    "image": "https://ui-venus.github.io/UI-Venus-1.5/static/images/uivenus-result_4.png",
+    "keywords": ["GUI Grounding", "GUI Agents", "Benchmark Evaluation", "Multimodal Large Language Models", "User Interface Understanding", "Visual Grounding", "Vision-Language Models"],
+    "abstract": "GUI agents have emerged as a powerful paradigm for automating interactions in digital environments, yet achieving both broad generality and consistently strong task performance remains challenging. In this report, we present UI-Venus-1.5, a unified, end-to-end GUI Agent designed for robust real-world applications. The proposed model family comprises two dense variants (2B and 8B) and one mixture-of-experts variant (30B-A3B) to meet various downstream application requirements. Compared to our previous version, UI-Venus-1.5 introduces three key technical advances: (1) a comprehensive Mid-Training stage leveraging 10 billion tokens across 30+ datasets to establish foundational GUI semantics; (2) Online Reinforcement Learning with full-trajectory rollouts, aligning training objectives with long-horizon, dynamic navigation in large-scale environments; and (3) a single unified GUI Agent constructed via Model Merging, which synthesizes domain-specific models (grounding, web, and mobile) into one cohesive checkpoint. Extensive evaluations demonstrate that UI-Venus-1.5 establishes new state-of-the-art performance on benchmarks such as ScreenSpot-Pro (69.6%), VenusBench-GD (75.0%), and AndroidWorld (77.6%), significantly outperforming previous strong baselines. In addition, UI-Venus-1.5 demonstrates robust navigation capabilities across a variety of Chinese mobile apps, effectively executing user instructions in real-world scenarios.",
+    "citation": "UI-Venus-1.5 Technical Report, Venus Team, 2026",
+    "isAccessibleForFree": true,
+    "license": "https://creativecommons.org/licenses/by/4.0/",
+    "mainEntity": {
+      "@type": "WebPage",
+      "@id": "https://ui-venus.github.io/UI-Venus-1.5/"
+    },
+    "about": [
+      {
+        "@type": "Thing",
+        "name": "GUI Agents"
+      },
+      {
+        "@type": "Thing", 
+        "name": "Multimodal Large Language Models"
+      }
+    ]
+  }
+  </script>
+
+  <!-- Website/Organization Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Venus Team",
+    "url": "https://github.com/inclusionAI",
+    "logo": "https://ui-venus.github.io/UI-Venus-1.5/static/images/ui-venus-logo.ico",
+    "sameAs": [
+      "https://github.com/inclusionAI/UI-Venus"
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" onclick="scrollToTop()" title="Scroll to top" aria-label="Scroll to top">
+    <i class="fas fa-chevron-up"></i>
+  </button>
+
+  <!-- More Works Dropdown -->
+  <div class="more-works-container">
+    <button class="more-works-btn" onclick="toggleMoreWorks()" title="View More Works from Our Team">
+      <i class="fas fa-flask"></i>
+      More Works
+      <i class="fas fa-chevron-down dropdown-arrow"></i>
+    </button>
+    <div class="more-works-dropdown" id="moreWorksDropdown">
+      <div class="dropdown-header">
+        <h4>More Works from Our Team</h4>
+        <button class="close-btn" onclick="toggleMoreWorks()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+      <div class="works-list">
+
+        <a href="https://arxiv.org/abs/2508.10833" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>UI-Venus Technical Report: Building High-performance UI Agents with RFT</h5>
+            <p>UI-Venus is a new, SOTA open-source native UI agent leveraging Qwen2.5-VL and RFT to deliver top performance in UI grounding and navigation, supported by a novel Self-Evolving Trajectory framework for enhanced planning.</p>
+            <span class="work-venue">arXiv 2025</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+
+        <a href="https://arxiv.org/abs/2512.16501" class="work-item" target="_blank">
+          <div class="work-info">
+            <h5>VenusBench-GD: A Comprehensive Multi-Platform GUI Benchmark for Diverse Grounding Tasks            </h5>
+            <p>A large-scale, bilingual, and cross-platform evaluation framework that utilizes a rigorous high-quality data construction pipeline. The study proposes a novel hierarchical taxonomy encompassing six subtasks across basic and advanced categories.</p>
+            <span class="work-venue">arXiv 2025</span>
+          </div>
+          <i class="fas fa-external-link-alt"></i>
+        </a>
+
+      </div>
+    </div>
+  </div>
+
+  <main id="main-content">
+    <section class="hero">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column has-text-centered">
+              <h1 class="title is-1 publication-title">UI-Venus-1.5: Towards Robust Real-World Applications</h1>
+
+              <div class="is-size-5 publication-authors">
+                <span class="author-block">
+                  Venus Team, Ant Group
+                </span>
+              </div>
+
+              <div class="is-size-6 has-text-centered mt-4">
+                <p class="has-text-grey-dark"><i>Contact: shuheng.ssh@antgroup.com</i></p>
+              </div>
+
+              <div class="column has-text-centered">
+                <div class="publication-links">
+                  <span class="link-block">
+                    <a href="https://arxiv.org/pdf/2602.09082" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fas fa-file-pdf"></i>
+                      </span>
+                      <span>Paper</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://github.com/inclusionAI/UI-Venus" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="fab fa-github"></i>
+                      </span>
+                      <span>Code</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://arxiv.org/abs/2602.09082" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon">
+                        <i class="ai ai-arxiv"></i>
+                      </span>
+                      <span>arXiv</span>
+                    </a>
+                  </span>
+
+                  <span class="link-block">
+                    <a href="https://huggingface.co/collections/inclusionAI/ui-venus" target="_blank"
+                      class="external-link button is-normal is-rounded is-dark">
+                      <span class="icon" style="vertical-align: middle; font-size: 20px;">🤗</span>
+                      <span>Model</span>
+                    </a>
+                  </span>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    <!-- Overall Performance -->
+    <section class="hero teaser">
+      <div class="container is-max-desktop">
+        <div class="hero-body">
+          <h2 class="title is-3 has-text-centered mb-6">Overall Performance</h2>
+          <img src="static/images/uivenus-result_4.png" alt="Overall Performance" />
+          <h2 class="subtitle">
+            <strong>UI-Venus-1.5</strong> achieves SOTA performance across multiple GUI grounding and navigation benchmarks.
+          </h2>
+        </div>
+      </div>
+    </section>
+    <!-- Overall Performance -->
+
+    <!-- Key Features -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered mb-6">Key Features</h2>
+        <img src="static/images/venus1.5_pipeline.png" alt="Training Pipeline" />
+        <h2 class="subtitle">
+          <strong>The Four-Stage Pipeline of UI-Venus-1.5:</strong> (1) Mid-Training on large-scale GUI data for domain knowledge injection; (2) Offline-RL for task-specific optimization across grounding, mobile, and web objectives; (3) Online-RL to enhance navigation in complex, real-world settings; and (4) Model Merge, which unifies the specialized models into the final UI-Venus-1.5.
+        </h2>
+
+        <div class="columns is-multiline">
+          <!-- Feature 1 -->
+          <div class="column is-half">
+            <div class="box" style="height: 100%;">
+              <div class="content">
+                <h4 class="title is-4">
+                  <span class="icon has-text-warning">
+                    <i class="fas fa-trophy"></i>
+                  </span>
+                  New SOTA
+                </h4>
+                <p>Achieves <strong>77.6%</strong> on AndroidWorld and <strong>69.6%</strong> on ScreenSpot-Pro, outperforming GPT-4o and previous GUI agents.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Feature 2 -->
+          <div class="column is-half">
+            <div class="box" style="height: 100%;">
+              <div class="content">
+                <h4 class="title is-4">
+                  <span class="icon has-text-danger">
+                    <i class="fas fa-rocket"></i>
+                  </span>
+                  Novel Training Pipeline
+                </h4>
+                <p>Features a comprehensive recipe of <strong>10B-token Mid-Training</strong>, Scaled Online-RL, and TIES-Merging for robust performance.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Feature 3 -->
+          <div class="column is-half">
+            <div class="box" style="height: 100%;">
+              <div class="content">
+                <h4 class="title is-4">
+                  <span class="icon has-text-info">
+                    <i class="fas fa-brain"></i>
+                  </span>
+                  Intelligent & Safe
+                </h4>
+                <p>Introduces <strong>Refusal-Aware Grounding</strong> to minimize hallucinations by correctly identifying non-existent elements.</p>
+              </div>
+            </div>
+          </div>
+          <!-- Feature 4 -->
+          <div class="column is-half">
+            <div class="box" style="height: 100%;">
+              <div class="content">
+                <h4 class="title is-4">
+                  <span class="icon has-text-primary">
+                    <i class="fas fa-mobile-alt"></i>
+                  </span>
+                  Real-World Ready
+                </h4>
+                <p>Unified end-to-end agent optimized for complex <strong>Chinese mobile ecosystems</strong> and diverse Web tasks.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Key Features -->
+
+    <!-- Demo Videos Section -->
+    <section class="section">
+      <div class="container is-max-desktop">
+        <h2 class="title is-3 has-text-centered mb-6">
+          <span class="icon">
+            <i class="fas fa-play-circle"></i>
+          </span>
+          Task Demos
+        </h2>
+        
+        <div class="columns is-multiline">
+          <!-- Video 1 -->
+          <div class="column is-full">
+            <div class="box">
+              <h4 class="title is-5 mb-3">Task 1: 打开喜马拉雅，帮我播放疯狂动物城2，设置列表循环播放</h4>
+              <div class="video-container">
+                <video poster="" id="video1" controls muted loop playsinline width="100%">
+                  <source src="static/videos/喜马拉雅1080.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 2 -->
+          <div class="column is-full">
+            <div class="box">
+              <h4 class="title is-5 mb-3">Task 2: 打开七猫免费小说，将小说脑洞榜前三名都加入书架</h4>
+              <div class="video-container">
+                <video poster="" id="video2" controls muted loop playsinline width="100%">
+                  <source src="static/videos/7猫1080.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 3 -->
+          <div class="column is-full">
+            <div class="box">
+              <h4 class="title is-5 mb-3">Task 3: 打开微博，搜索杭州天气，并根据天气进行评论</h4>
+              <div class="video-container">
+                <video poster="" id="video3" controls muted loop playsinline width="100%">
+                  <source src="static/videos/微博1080.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 4 -->
+          <div class="column is-full">
+            <div class="box">
+              <h4 class="title is-5 mb-3">Task 4: 打开小红书，搜索烘焙教程，找到播放量大于1w的视频进行播放</h4>
+              <div class="video-container">
+                <video poster="" id="video4" controls muted loop playsinline width="100%">
+                  <source src="static/videos/小红书1080.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+
+          <!-- Video 5 -->
+          <div class="column is-full">
+            <div class="box">
+              <h4 class="title is-5 mb-3">Task 5: 打开今日头条，点击进入热榜第1名，查看事件速览</h4>
+              <div class="video-container">
+                <video poster="" id="video5" controls muted loop playsinline width="100%">
+                  <source src="static/videos/今日头条1080.mov" type="video/mp4">
+                </video>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Demo Videos Section -->
+
+    <!-- Grounding Performance -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered mb-6">Grounding Performance</h2>
+          <div class="box">
+            <img src="static/images/grounding_screenshot.jpg" alt="Grounding Performance" />
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- End Grounding Performance -->
+
+    <!-- Navigation Performance -->
+    <section class="hero is-small">
+      <div class="hero-body">
+        <div class="container is-max-desktop">
+          <h2 class="title is-3 has-text-centered mb-6">Navigation Performance</h2>
+          
+          <style>
+            .nav-result-box {
+              height: 100%;
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+            }
+            .nav-result-img-container {
+              height: 500px; /* 固定高度确保对齐 */
+              display: flex;
+              align-items: center;
+              justify-content: center;
+              overflow: hidden;
+            }
+            .nav-result-img-container img {
+              max-height: 100%;
+              width: auto;
+              object-fit: contain;
+            }
+          </style>
+
+          <div class="columns is-multiline">
+            <!-- AndroidWorld -->
+            <div class="column is-half">
+              <div class="box nav-result-box">
+                <div class="nav-result-img-container">
+                  <img src="static/images/androidworld_screenshot.jpg" alt="AndroidWorld Performance" />
+                </div>
+                <p class="has-text-centered is-size-7 mt-2">AndroidWorld Results</p>
+              </div>
+            </div>
+            <!-- AndroidLab -->
+            <div class="column is-half">
+              <div class="box nav-result-box">
+                <div class="nav-result-img-container">
+                  <img src="static/images/androidlab_screenshot.jpg" alt="AndroidLab Performance" />
+                </div>
+                <p class="has-text-centered is-size-7 mt-2">AndroidLab Results</p>
+              </div>
+            </div>
+            <!-- VenusBench-Mobile -->
+            <div class="column is-half">
+              <div class="box nav-result-box">
+                <div class="nav-result-img-container">
+                  <img src="static/images/venusbench_mobile_screenshot.jpg" alt="VenusBench-Mobile Performance" />
+                </div>
+                <p class="has-text-centered is-size-7 mt-2">VenusBench-Mobile Results</p>
+              </div>
+            </div>
+            <!-- WebVoyager -->
+            <div class="column is-half">
+              <div class="box nav-result-box">
+                <div class="nav-result-img-container">
+                  <img src="static/images/webvoyager_screenshot.jpg" alt="WebVoyager Performance" />
+                </div>
+                <p class="has-text-centered is-size-7 mt-2">WebVoyager Results</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+    <!-- End Navigation Performance -->
+
+    <!--BibTex citation -->
+    <section class="section" id="BibTeX">
+      <div class="container is-max-desktop content">
+        <div class="bibtex-header">
+          <h2 class="title">BibTeX</h2>
+          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
+            <i class="fas fa-copy"></i>
+            <span class="copy-text">Copy</span>
+          </button>
+        </div>
+        <pre id="bibtex-code"><code>@misc{venusteam2026uivenus15technicalreport,
+          title={UI-Venus-1.5 Technical Report}, 
+          author={Venus Team and Changlong Gao and Zhangxuan Gu and Yulin Liu and Xinyu Qiu and Shuheng Shen and Yue Wen and Tianyu Xia and Zhenyu Xu and Zhengwen Zeng and Beitong Zhou and Xingran Zhou and Weizhi Chen and Sunhao Dai and Jingya Dou and Yichen Gong and Yuan Guo and Zhenlin Guo and Feng Li and Qian Li and Jinzhen Lin and Yuqi Zhou and Linchao Zhu and Liang Chen and Zhenyu Guo and Changhua Meng and Weiqiang Wang},
+          year={2026},
+          eprint={2602.09082},
+          archivePrefix={arXiv},
+          primaryClass={cs.CV},
+          url={https://arxiv.org/abs/2602.09082}, 
+    }
+
+</code></pre>
+      </div>
+    </section>
+    <!--End BibTex citation -->
+
+
+    <footer class="footer">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-8">
+            <div class="content">
+
+              <p>
+                This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template"
+                  target="_blank">Academic Project Page Template</a> which was adopted from the <a
+                  href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+                You are free to borrow the source code of this website, we just ask that you link back to this page in
+                the footer. <br> This website is licensed under a <a rel="license"
+                  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+                  Commons Attribution-ShareAlike 4.0 International License</a>.
+              </p>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Statcounter tracking code -->
+
+    <!-- You can add a tracker to track page visits by creating an account at statcounter.com -->
+
+    <!-- End of Statcounter Code -->
+
+</body>
+
+</html>
