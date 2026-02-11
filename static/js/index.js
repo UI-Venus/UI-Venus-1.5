@@ -36,36 +36,33 @@ document.addEventListener('keydown', function(event) {
     }
 });
 
-// Copy BibTeX to clipboard
-function copyBibTeX() {
-    const bibtexElement = document.getElementById('bibtex-code');
-    const button = document.querySelector('.copy-bibtex-btn');
-    const copyText = button.querySelector('.copy-text');
+// Copy BibTeX to clipboard (button: the copy button element, finds pre in same bibtex-block)
+function copyBibTeX(button) {
+    const block = button ? button.closest('.bibtex-block') : null;
+    const bibtexElement = block ? block.querySelector('pre') : document.getElementById('bibtex-code');
+    const targetButton = button || document.querySelector('.copy-bibtex-btn');
+    const copyText = targetButton ? targetButton.querySelector('.copy-text') : null;
     
-    if (bibtexElement) {
+    if (bibtexElement && copyText) {
         navigator.clipboard.writeText(bibtexElement.textContent).then(function() {
-            // Success feedback
-            button.classList.add('copied');
-            copyText.textContent = 'Cop';
-            
+            targetButton.classList.add('copied');
+            copyText.textContent = 'Copied';
             setTimeout(function() {
-                button.classList.remove('copied');
+                targetButton.classList.remove('copied');
                 copyText.textContent = 'Copy';
             }, 2000);
         }).catch(function(err) {
             console.error('Failed to copy: ', err);
-            // Fallback for older browsers
             const textArea = document.createElement('textarea');
             textArea.value = bibtexElement.textContent;
             document.body.appendChild(textArea);
             textArea.select();
             document.execCommand('copy');
             document.body.removeChild(textArea);
-            
-            button.classList.add('copied');
-            copyText.textContent = 'Cop';
+            targetButton.classList.add('copied');
+            copyText.textContent = 'Copied';
             setTimeout(function() {
-                button.classList.remove('copied');
+                targetButton.classList.remove('copied');
                 copyText.textContent = 'Copy';
             }, 2000);
         });

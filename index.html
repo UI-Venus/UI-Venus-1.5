@@ -288,7 +288,10 @@
     <section class="hero teaser">
       <div class="container is-max-desktop">
         <div class="hero-body">
-          <h2 class="title is-3 has-text-centered mb-6">Overall Performance</h2>
+          <h2 class="title is-3 has-text-centered mb-6 section-title">
+            <span class="icon"><i class="fas fa-trophy"></i></span>
+            Overall Performance
+          </h2>
           <img src="static/images/uivenus-result_4.png" alt="Overall Performance" />
           <h2 class="subtitle">
             <strong>UI-Venus-1.5</strong> achieves SOTA performance across multiple GUI grounding and navigation benchmarks.
@@ -301,7 +304,10 @@
     <!-- Key Features -->
     <section class="section">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered mb-6">Key Features</h2>
+        <h2 class="title is-3 has-text-centered mb-6 section-title">
+          <span class="icon"><i class="fas fa-star"></i></span>
+          Key Features
+        </h2>
         <img src="static/images/venus1.5_pipeline.png" alt="Training Pipeline" />
         <h2 class="subtitle">
           <strong>The Four-Stage Pipeline of UI-Venus-1.5:</strong> (1) Mid-Training on large-scale GUI data for domain knowledge injection; (2) Offline-RL for task-specific optimization across grounding, mobile, and web objectives; (3) Online-RL to enhance navigation in complex, real-world settings; and (4) Model Merge, which unifies the specialized models into the final UI-Venus-1.5.
@@ -372,10 +378,8 @@
     <!-- Demo Videos Section -->
     <section class="section">
       <div class="container is-max-desktop">
-        <h2 class="title is-3 has-text-centered mb-6">
-          <span class="icon">
-            <i class="fas fa-play-circle"></i>
-          </span>
+        <h2 class="title is-3 has-text-centered mb-6 section-title">
+          <span class="icon"><i class="fas fa-play-circle"></i></span>
           Task Demos
         </h2>
         
@@ -448,7 +452,10 @@
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container is-max-desktop">
-          <h2 class="title is-3 has-text-centered mb-6">Grounding Performance</h2>
+          <h2 class="title is-3 has-text-centered mb-6 section-title">
+            <span class="icon"><i class="fas fa-bullseye"></i></span>
+            Grounding Performance
+          </h2>
           <div class="box">
             <img src="static/images/grounding_screenshot.jpg" alt="Grounding Performance" />
           </div>
@@ -461,7 +468,10 @@
     <section class="hero is-small">
       <div class="hero-body">
         <div class="container is-max-desktop">
-          <h2 class="title is-3 has-text-centered mb-6">Navigation Performance</h2>
+          <h2 class="title is-3 has-text-centered mb-6 section-title">
+            <span class="icon"><i class="fas fa-route"></i></span>
+            Navigation Performance
+          </h2>
           
           <style>
             .nav-result-box {
@@ -528,30 +538,75 @@
     </section>
     <!-- End Navigation Performance -->
 
-    <!--BibTex citation -->
-    <section class="section" id="BibTeX">
+    <!-- Citation -->
+    <section class="section" id="citation">
       <div class="container is-max-desktop content">
-        <div class="bibtex-header">
-          <h2 class="title">BibTeX</h2>
-          <button class="copy-bibtex-btn" onclick="copyBibTeX()" title="Copy BibTeX to clipboard">
-            <i class="fas fa-copy"></i>
-            <span class="copy-text">Copy</span>
-          </button>
+        <h2 class="title is-3 has-text-centered mb-5 section-title">
+          <span class="icon"><i class="fas fa-quote-left"></i></span>
+          Citation
+        </h2>
+        
+        <div class="bibtex-block mb-5">
+          <div class="bibtex-header mb-3">
+            <h3 class="title is-5">UI-Venus-1.5 Technical Report</h3>
+            <button class="copy-bibtex-btn" onclick="copyBibTeX(this)" title="Copy BibTeX to clipboard">
+              <i class="fas fa-copy"></i>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre id="bibtex-code"><code>@misc{venusteam2026uivenus15technicalreport,
+      title={UI-Venus-1.5 Technical Report},
+      author={Venus Team and Changlong Gao and Zhangxuan Gu and Yulin Liu and Xinyu Qiu and Shuheng Shen and Yue Wen and Tianyu Xia and Zhenyu Xu and Zhengwen Zeng and Beitong Zhou and Xingran Zhou and Weizhi Chen and Sunhao Dai and Jingya Dou and Yichen Gong and Yuan Guo and Zhenlin Guo and Feng Li and Qian Li and Jinzhen Lin and Yuqi Zhou and Linchao Zhu and Liang Chen and Zhenyu Guo and Changhua Meng and Weiqiang Wang},
+      year={2026},
+      eprint={2602.09082},
+      archivePrefix={arXiv},
+      primaryClass={cs.CV},
+      url={https://arxiv.org/abs/2602.09082},
+}</code></pre>
         </div>
-        <pre id="bibtex-code"><code>@misc{venusteam2026uivenus15technicalreport,
-          title={UI-Venus-1.5 Technical Report}, 
-          author={Venus Team and Changlong Gao and Zhangxuan Gu and Yulin Liu and Xinyu Qiu and Shuheng Shen and Yue Wen and Tianyu Xia and Zhenyu Xu and Zhengwen Zeng and Beitong Zhou and Xingran Zhou and Weizhi Chen and Sunhao Dai and Jingya Dou and Yichen Gong and Yuan Guo and Zhenlin Guo and Feng Li and Qian Li and Jinzhen Lin and Yuqi Zhou and Linchao Zhu and Liang Chen and Zhenyu Guo and Changhua Meng and Weiqiang Wang},
-          year={2026},
-          eprint={2602.09082},
-          archivePrefix={arXiv},
-          primaryClass={cs.CV},
-          url={https://arxiv.org/abs/2602.09082}, 
-    }
 
-</code></pre>
+        <h3 class="title is-5 mt-6 mb-4">Related Works</h3>
+
+        <div class="bibtex-block mb-5">
+          <div class="bibtex-header mb-3">
+            <h3 class="title is-6">UI-Venus-1.0 Technical Report</h3>
+            <button class="copy-bibtex-btn" onclick="copyBibTeX(this)" title="Copy BibTeX to clipboard">
+              <i class="fas fa-copy"></i>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre class="bibtex-code"><code>@misc{gu2025uivenustechnicalreportbuilding,
+            title={UI-Venus Technical Report: Building High-performance UI Agents with RFT}, 
+            author={Zhangxuan Gu and Zhengwen Zeng and Zhenyu Xu and Xingran Zhou and Shuheng Shen and Yunfei Liu and Beitong Zhou and Changhua Meng and Tianyu Xia and Weizhi Chen and Yue Wen and Jingya Dou and Fei Tang and Jinzhen Lin and Yulin Liu and Zhenlin Guo and Yichen Gong and Heng Jia and Changlong Gao and Yuan Guo and Yong Deng and Zhenyu Guo and Liang Chen and Weiqiang Wang},
+            year={2025},
+            eprint={2508.10833},
+            archivePrefix={arXiv},
+            primaryClass={cs.CV},
+            url={https://arxiv.org/abs/2508.10833}, 
+      }</code></pre>
+        </div>
+
+        <div class="bibtex-block mb-5">
+          <div class="bibtex-header mb-3">
+            <h3 class="title is-6">VenusBench-GD</h3>
+            <button class="copy-bibtex-btn" onclick="copyBibTeX(this)" title="Copy BibTeX to clipboard">
+              <i class="fas fa-copy"></i>
+              <span class="copy-text">Copy</span>
+            </button>
+          </div>
+          <pre class="bibtex-code"><code>@misc{zhou2025venusbenchgdcomprehensivemultiplatformgui,
+            title={VenusBench-GD: A Comprehensive Multi-Platform GUI Benchmark for Diverse Grounding Tasks}, 
+            author={Beitong Zhou and Zhexiao Huang and Yuan Guo and Zhangxuan Gu and Tianyu Xia and Zichen Luo and Fei Tang and Dehan Kong and Yanyi Shang and Suling Ou and Zhenlin Guo and Changhua Meng and Shuheng Shen},
+            year={2025},
+            eprint={2512.16501},
+            archivePrefix={arXiv},
+            primaryClass={cs.CV},
+            url={https://arxiv.org/abs/2512.16501}, 
+      }</code></pre>
+        </div>
       </div>
     </section>
-    <!--End BibTex citation -->
+    <!-- End Citation -->
 
 
     <footer class="footer">
